@@ -1,4 +1,3 @@
-# trabalho1/src/search.py
 import time
 from collections import deque
 import heapq

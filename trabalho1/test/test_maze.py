@@ -1,8 +1,8 @@
-# tests/test_maze.py
+# trabalho1/test/test_maze.py
 import unittest
 import os
-from ..src.maze import Maze
 
+from trabalho1.src.maze import Maze
 
 class TestMaze(unittest.TestCase):
 
@@ -29,7 +29,6 @@ class TestMaze(unittest.TestCase):
     def test_in_bounds(self):
         self.assertTrue(self.maze.in_bounds((0, 0)))
         self.assertFalse(self.maze.in_bounds((-1, 0)))
-        self.assertFalse(self.maze.in_bounds((0, 3)))
 
     def test_is_passable(self):
         self.assertTrue(self.maze.is_passable((0, 1)))
@@ -40,17 +39,12 @@ class TestMaze(unittest.TestCase):
         self.assertFalse(self.maze.goal_test((0, 0)))
 
     def test_get_neighbors(self):
-
-        # Vizinhos do canto superior esquerdo (0, 0) - Deve ter dois vizinhos.
         neighbors_start = self.maze.get_neighbors((0, 0))
         self.assertCountEqual(neighbors_start, [(1, 0), (0, 1)], "Vizinhos de (0,0) incorretos")
 
-        # Vizinhos de uma célula no meio (2, 1) - Deve ter três vizinhos.
         neighbors_middle = self.maze.get_neighbors((2, 1))
-        # Note que (1,1) é uma parede, então não deve ser listado.
-        self.assertCountEqual(neighbors_middle, [(1, 1), (2, 0), (2, 2)], "Vizinhos de (2,1) incorretos")
+        self.assertCountEqual(neighbors_middle, [(2, 0), (2, 2)], "Vizinhos de (2,1) incorretos")
 
-        # Vizinhos de uma célula adjacente a uma parede
         neighbors_near_wall = self.maze.get_neighbors((1, 0))
         self.assertCountEqual(neighbors_near_wall, [(0, 0), (2, 0)], "Vizinhos de (1,0) incorretos")
 

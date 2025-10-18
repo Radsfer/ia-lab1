@@ -1,4 +1,3 @@
-# trabalho1/src/heuristics.py
 from typing import Tuple
 
 Pos = Tuple[int, int]

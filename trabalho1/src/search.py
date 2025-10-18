@@ -4,7 +4,6 @@ from collections import deque
 import heapq
 from typing import List, Tuple, Callable, Dict, Optional
 
-# Para garantir que as importações funcionem ao executar de diferentes locais
 try:
     from .maze import Maze
     from .heuristics import h_manhattan
@@ -33,9 +32,7 @@ def bfs(maze: Maze) -> Optional[Dict]:
     start_node = maze.start
     goal_node = maze.goal
 
-    # Fronteira: uma fila (deque)
     queue = deque([start_node])
-    # Dicionário para reconstruir o caminho e marcar nós visitados
     came_from = {start_node: None}
 
     nodes_expanded = 0
@@ -60,10 +57,9 @@ def bfs(maze: Maze) -> Optional[Dict]:
             if neighbor not in came_from:
                 came_from[neighbor] = current
                 queue.append(neighbor)
-                # Atualiza a memória máxima (fila + visitados)
                 max_memory = max(max_memory, len(queue) + len(came_from))
 
-    return None  # Caminho não encontrado
+    return None
 
 
 def dfs(maze: Maze) -> Optional[Dict]:
@@ -72,7 +68,6 @@ def dfs(maze: Maze) -> Optional[Dict]:
     start_node = maze.start
     goal_node = maze.goal
 
-    # Fronteira: uma pilha (lista)
     stack = [start_node]
     came_from = {start_node: None}
 
@@ -100,7 +95,7 @@ def dfs(maze: Maze) -> Optional[Dict]:
                 stack.append(neighbor)
                 max_memory = max(max_memory, len(stack) + len(came_from))
 
-    return None  # Caminho não encontrado
+    return None
 
 
 def greedy_search(maze: Maze, heuristic: Callable[[Pos, Pos], float]) -> Optional[Dict]:
@@ -109,7 +104,6 @@ def greedy_search(maze: Maze, heuristic: Callable[[Pos, Pos], float]) -> Optiona
     start_node = maze.start
     goal_node = maze.goal
 
-    # Fronteira: uma fila de prioridade (heapq)
     priority_queue = [(0, start_node)]
     came_from = {start_node: None}
 
@@ -170,10 +164,9 @@ def a_star(maze: Maze, heuristic: Callable[[Pos, Pos], float]) -> Optional[Dict]
             }
 
         for neighbor in maze.get_neighbors(current):
-            new_cost = cost_so_far[current] + 1  # Custo de passo é sempre 1
+            new_cost = cost_so_far[current] + 1
             if neighbor not in cost_so_far or new_cost < cost_so_far[neighbor]:
                 cost_so_far[neighbor] = new_cost
-                # Prioridade f(n) = g(n) + h(n)
                 priority = new_cost + heuristic(neighbor, goal_node)
                 heapq.heappush(priority_queue, (priority, neighbor))
                 came_from[neighbor] = current

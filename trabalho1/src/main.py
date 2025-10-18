@@ -1,4 +1,3 @@
-# trabalho1/src/main.py
 import os
 import sys
 import csv
@@ -28,8 +27,6 @@ def plot_results(results, title, y_label, filename):
 
     for bar in bars:
         yval = bar.get_height()
-        # **** ESTA É A LINHA CORRIGIDA ****
-        # Trocamos '.4f' por '.4g' para formatação inteligente
         plt.text(bar.get_x() + bar.get_width() / 2.0, yval, f'{yval:.4g}', va='bottom', ha='center', fontsize=9)
 
     plt.tight_layout()
@@ -77,13 +74,10 @@ def main():
     with open(report_path, 'w', newline='') as f:
         writer = csv.writer(f)
 
-        # Escreve o cabeçalho no arquivo
         writer.writerow(csv_header)
 
-        # Itera sobre os resultados e escreve uma linha para cada algoritmo
         for name, result in all_results.items():
             if result:
-                # Cria uma lista com os dados na ordem do cabeçalho
                 row = [
                     name,
                     result['cost'],
@@ -96,8 +90,6 @@ def main():
                 # Se um algoritmo falhou, escreve N/A
                 row = [name, 'N/A', 'N/A', 'N/A', 'N/A']
                 writer.writerow(row)
-
-    print(f"Relatório salvo em '{report_path}'")
 
 
 if __name__ == "__main__":

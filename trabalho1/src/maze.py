@@ -37,7 +37,6 @@ class Maze:
         return self.grid[r][c] != '#'
 
     def get_neighbors(self, p: Pos) -> List[Pos]:
-        """Retorna a lista de vizinhos transitáveis de uma posição."""
         r, c = p
         # Candidatos: Norte, Sul, Oeste, Leste
         candidates = [
@@ -49,7 +48,6 @@ class Maze:
         neighbors = []
         for action, (nr, nc) in candidates:
             neighbor_pos = (nr, nc)
-            # Verifica se está nos limites E se não é uma parede
             if self.in_bounds(neighbor_pos) and self.is_passable(neighbor_pos):
                 neighbors.append(neighbor_pos)
         return neighbors

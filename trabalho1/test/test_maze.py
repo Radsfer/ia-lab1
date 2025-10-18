@@ -1,4 +1,3 @@
-# trabalho1/test/test_maze.py
 import unittest
 import os
 

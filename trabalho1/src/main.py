@@ -47,6 +47,7 @@ def main():
 
     all_results['BFS'] = bfs(maze)
     all_results['DFS'] = dfs(maze)
+
     all_results['Gulosa (Manhattan)'] = greedy_search(maze, h_manhattan)
     all_results['Gulosa (Diagonal)'] = greedy_search(maze, h_diagonal)
     all_results['Gulosa (Euclidiana)'] = greedy_search(maze, h_euclidiana)

@@ -6,7 +6,7 @@ from trabalho1.src.maze import Maze
 class TestMaze(unittest.TestCase):
 
     def setUp(self):
-        self.test_maze_file = 'trabalho1/test/test_labirinto.txt'
+        self.test_maze_file = 'trabalho1/tests/test_labirinto.txt'
         os.makedirs(os.path.dirname(self.test_maze_file), exist_ok=True)
 
         with open(self.test_maze_file, 'w') as f:
